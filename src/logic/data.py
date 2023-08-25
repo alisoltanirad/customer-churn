@@ -6,8 +6,17 @@ This module contains functions to load and process training data.
 """
 
 import pandas as pd
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import OneHotEncoder, StandardScaler
 
-from config import BQ_DATASET, BQ_PROJECT, BQ_TABLE
+from config import (
+    BQ_DATASET,
+    BQ_PROJECT,
+    BQ_TABLE,
+    CATEGORICAL_COLS,
+    FEATURES_TO_USE,
+    NUMERIC_COLS,
+)
 
 
 def load_training_data_from_bigquery() -> pd.DataFrame:
@@ -58,29 +67,45 @@ def select_features(X: pd.DataFrame) -> pd.DataFrame:
         pd.DataFrame: Feature set containing selected features
 
     """
-    return X[[
-        "CreditScore",
-        "Geography",
-        "Gender",
-        "Age",
-        "Tenure",
-        "Balance",
-        "NumOfProducts",
-        "HasCrCard",
-        "IsActiveMember",
-        "EstimatedSalary",
-        "Complain",
-        "Satisfaction_Score",
-        "Card_Type",
-        "Point_Earned"
-    ]]
+    return X[FEATURES_TO_USE]
+
+
+def preprocess_features(X: pd.DataFrame) -> pd.DataFrame:
+    """Feature preprocessing
+
+    This function normalizes numeric features and encodes categorical features.
+
+    Args:
+        X (pd.DataFrame): Features to preprocess
+
+    Returns:
+        pd.DataFrame: Preprocessed features
+
+    """
+    # Define feature preprocessors
+    standard_scaler = StandardScaler()
+    one_hot_encoder = OneHotEncoder()
+    preprocessor = ColumnTransformer(
+        transformers=[
+            ("num", standard_scaler, NUMERIC_COLS),
+            ("cat", one_hot_encoder, CATEGORICAL_COLS)
+        ]
+    )
+
+    # Preprocess features
+    preprocessed_data = preprocessor.fit_transform(X)
+    X = pd.DataFrame(preprocessed_data)
+
+    # Return preprocessed features
+    return X
 
 
 if __name__ == "__main__":
     dataset: pd.DataFrame = load_training_data_from_bigquery()
     X, y = split_x_y(dataset)
     X = select_features(X)
+    X = preprocess_features(X)
     print(X.shape)
-    print(X.columns)
     print(X.head())
+    print(y.shape)
     print(y.head())
