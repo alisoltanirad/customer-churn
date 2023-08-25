@@ -100,11 +100,26 @@ def preprocess_features(X: pd.DataFrame) -> pd.DataFrame:
     return X
 
 
-if __name__ == "__main__":
+def get_x_y() -> tuple[pd.DataFrame, pd.Series]:
+    """Get training data
+
+    This function runs training dataset loading and preprocessing steps
+    and returns final features and labels to be used in the model for training.
+
+    Returns:
+        pd.DataFrame: X (features)
+        pd.Series: y (labels)
+
+    """
     dataset: pd.DataFrame = load_training_data_from_bigquery()
     X, y = split_x_y(dataset)
     X = select_features(X)
     X = preprocess_features(X)
+    return X, y
+
+
+if __name__ == "__main__":
+    X, y = get_x_y()
     print(X.shape)
     print(X.head())
     print(y.shape)
