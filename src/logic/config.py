@@ -30,7 +30,7 @@ FEATURES_TO_USE: list[str] = [
 ]
 
 # Numeric/Categorical features
-NUMERIC_COLS = [
+NUMERIC_COLS: list[str] = [
     "CreditScore",
     "Age",
     "Tenure",
@@ -43,8 +43,14 @@ NUMERIC_COLS = [
     "Satisfaction_Score",
     "Point_Earned",
 ]
-CATEGORICAL_COLS = [
+CATEGORICAL_COLS: list[str] = [
     "Geography",
     "Gender",
     "Card_Type"
 ]
+
+# XGBoost classifier parameters
+XGB_PARAMS: dict = {
+    "eta": 0.3,
+    "max_depth": 6,
+}
