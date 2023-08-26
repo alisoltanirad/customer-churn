@@ -11,6 +11,9 @@ import pandas as pd
 from sklearn.compose import ColumnTransformer
 from xgboost import XGBClassifier
 
+from config import GCS_FOLDER
+from gc_utils import load_from_gcs
+
 
 def predict(
     classifier: XGBClassifier,
@@ -40,3 +43,9 @@ def predict(
 
     # Return the labels
     return labels
+
+
+if __name__ == "__main__":
+    classifier, preprocessor = load_from_gcs(GCS_FOLDER)
+    print(classifier)
+    print(preprocessor)

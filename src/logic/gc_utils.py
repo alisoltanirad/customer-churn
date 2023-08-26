@@ -5,6 +5,7 @@ This module contains functions to read and write data to Google Cloud services.
 
 """
 
+import json
 import os
 
 import joblib
@@ -69,3 +70,48 @@ def save_preprocessor(preprocessor: ColumnTransformer):
 
     # Remove the local file
     os.remove(PREPROCESSOR_FILENAME)
+
+
+def load_from_gcs(folder_name: str) -> tuple[XGBClassifier, ColumnTransformer]:
+    """Load from Google Cloud Storage
+
+    This function downloads the classifier and preprocessor
+    from Google Cloud Storage.
+
+    Args:
+        folder_name (str): Folder name within the bucket
+
+    Returns:
+        XGBClassifier: Classifier
+        ColumnTransformer: Preprocessing pipeline
+
+    """
+    # Set up Google Cloud client and bucket
+    client = storage.Client()
+    bucket = client.bucket(GCS_BUCKET)
+
+    # Set the path to the files within the bucket
+    classifier_path: str = os.path.join(folder_name, MODEL_FILENAME)
+    preprocessor_path: str = os.path.join(folder_name, PREPROCESSOR_FILENAME)
+
+    # Download the model file
+    blob = bucket.blob(classifier_path)
+    blob.download_to_filename(MODEL_FILENAME)
+
+    # Load XGBoost classifier
+    classifier: XGBClassifier = XGBClassifier()
+    classifier.load_model(MODEL_FILENAME)
+
+    # Download the preprocessor file
+    blob = bucket.blob(preprocessor_path)
+    blob.download_to_filename(PREPROCESSOR_FILENAME)
+
+    # Load preprocessing pipeline
+    preprocessor = joblib.load(PREPROCESSOR_FILENAME)
+
+    # Remove local files
+    os.remove(MODEL_FILENAME)
+    os.remove(PREPROCESSOR_FILENAME)
+
+    # Return the classifier and preprocessor
+    return classifier, preprocessor
