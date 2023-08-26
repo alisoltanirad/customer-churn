@@ -29,6 +29,7 @@ def train(X: pd.DataFrame, y: pd.Series) -> XGBClassifier:
 
     Returns:
         XGBClassifier: Classifier
+
     """
     # Create the classifier
     classifier = XGBClassifier(**XGB_PARAMS)
