@@ -6,10 +6,17 @@ This module contains configs for training/testing the model
 """
 # pylint: disable=unused-variable
 
-# BigQuery
+# Classifier version
+MODEL_VERSION: str = "0.0"
+
+# BigQuery (training dataset)
 BQ_PROJECT: str = "customer-churn-1"
 BQ_DATASET: str = "bank_customer_churn"
 BQ_TABLE: str = "customer_data"
+
+# Google Cloud Storage (saving models and preprocessors)
+GCS_BUCKET: str = "customer-churn-classifier"
+GCS_FOLDER: str = "v" + MODEL_VERSION
 
 # Feature selection
 FEATURES_TO_USE: list[str] = [
