@@ -19,7 +19,7 @@ def predict(
     classifier: XGBClassifier,
     preprocessor: ColumnTransformer, 
     data: pd.DataFrame
-):
+) -> pd.Series:
     """Prediction
 
     This function takes and preprocess the input data
