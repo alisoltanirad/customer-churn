@@ -7,10 +7,12 @@ This module contains functions to read and write data to Google Cloud services.
 
 import os
 
+import joblib
 from google.cloud import storage
+from sklearn.compose import ColumnTransformer
 from xgboost import XGBClassifier
 
-from config import GCS_BUCKET, GCS_FOLDER, MODEL_FILENAME
+from config import GCS_BUCKET, GCS_FOLDER, MODEL_FILENAME, PREPROCESSOR_FILENAME
 
 
 def upload_to_gcs(filename: str):
@@ -48,3 +50,22 @@ def save_classifier(classifier: XGBClassifier):
 
     # Remove the local file
     os.remove(MODEL_FILENAME)
+
+
+def save_preprocessor(preprocessor: ColumnTransformer):
+    """Save the preprocessor
+
+    This function saves the Preprocessing pipeline and uploads it to Google Cloud Storage.
+
+    Args:
+        preprocessor (ColumnTransformer): Preprocessing pipeline
+
+    """
+    # Save the preprocessor to a local file
+    joblib.dump(preprocessor, PREPROCESSOR_FILENAME)
+
+    # Upload to Google Cloud Storage
+    upload_to_gcs(PREPROCESSOR_FILENAME)
+
+    # Remove the local file
+    os.remove(PREPROCESSOR_FILENAME)

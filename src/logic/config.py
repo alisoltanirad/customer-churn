@@ -7,8 +7,9 @@ This module contains configs for training/testing the model
 # pylint: disable=unused-variable
 
 # Classifier
-MODEL_VERSION: str = "0.4"
+MODEL_VERSION: str = "1.0"
 MODEL_FILENAME: str = "model.json"
+PREPROCESSOR_FILENAME: str = "preprocessor.joblib"
 
 # BigQuery (training dataset)
 BQ_PROJECT: str = "customer-churn-1"

@@ -17,6 +17,7 @@ from config import (
     FEATURES_TO_USE,
     NUMERIC_COLS,
 )
+from gc_utils import save_preprocessor
 
 
 def load_training_data_from_bigquery() -> pd.DataFrame:
@@ -95,6 +96,9 @@ def preprocess_features(X: pd.DataFrame) -> pd.DataFrame:
     # Preprocess features
     preprocessed_data = preprocessor.fit_transform(X)
     X = pd.DataFrame(preprocessed_data)
+
+    # Save the preprocessing pipeline
+    save_preprocessor(preprocessor)
 
     # Return preprocessed features
     return X
