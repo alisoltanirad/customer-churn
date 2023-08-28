@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""FastAPI application
+"""Status route
 
 This module contains logic for the status route.
 
