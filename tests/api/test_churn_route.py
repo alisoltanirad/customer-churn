@@ -9,6 +9,7 @@ import pytest
 from fastapi.testclient import TestClient
 
 from src.api.app import application
+from src.api.config import CHURN_URL
 
 
 @pytest.mark.parametrize(
@@ -78,7 +79,7 @@ def test_api(
 
     # Make the API request and get the response
     response = client.post(
-        url="/churn",
+        url=CHURN_URL,
         json=request_body,
     )
 

@@ -8,6 +8,7 @@ This module contains logic for the churn route.
 import pandas as pd
 from fastapi import APIRouter
 
+from api.config import CHURN_URL
 from api.schemas import Request, Response
 from logic.config import GCS_FOLDER
 from logic.gc_utils import load_from_gcs
@@ -17,7 +18,7 @@ from logic.prediction import predict
 router = APIRouter()
 classifier, preprocessor = load_from_gcs(GCS_FOLDER)
 
-@router.post(path="/churn", response_model=Response)
+@router.post(path=CHURN_URL, response_model=Response)
 async def customer_churn(request: Request):
     """Customer churn route
 

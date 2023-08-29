@@ -7,9 +7,12 @@ This module contains logic for the status route.
 
 from fastapi import APIRouter
 
+from api.config import STATUS_URL
+
+
 router = APIRouter()
 
-@router.get("/")
+@router.get(STATUS_URL)
 async def root():
     """Status route
 
