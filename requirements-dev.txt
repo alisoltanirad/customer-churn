@@ -1,3 +1,4 @@
+ipdb==0.13.13
 ipywidgets==8.1.0
 jupyterlab==4.0.5
 notebook==7.0.2
