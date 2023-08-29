@@ -35,20 +35,20 @@ class Customer(BaseModel):
     predciting if the customer churns.
 
     """
-    CreditScore: int = Field(..., title="Credit Score")
-    Geography: Country = Field(..., title="Geography (Country)")
-    Gender: Sex = Field(..., title="Gender")
-    Age: int = Field(..., title="Age")
-    Tenure: int = Field(..., title="Tenure (Household Size)")
-    Balance: float = Field(..., title="Balance")
-    NumOfProducts: int = Field(..., title="Number of Products")
-    HasCrCard: int = Field(..., title="Has Credit Card?")
-    IsActiveMember: int = Field(..., title="Is Active Member?")
-    EstimatedSalary: float = Field(..., title="Estimated Salary")
-    Complain: int = Field(..., title="Has Complain?")
-    Satisfaction_Score: int = Field(..., title="Satisfaction Score")
-    Card_Type: CardType = Field(..., title="Card Type")
-    Point_Earned: int = Field(..., title="Points Earned")
+    CreditScore: int = Field(..., title="Credit Score", example=819)
+    Geography: Country = Field(..., title="Geography (Country)", example="France")
+    Gender: Sex = Field(..., title="Gender", example="Male")
+    Age: int = Field(..., title="Age", example=50)
+    Tenure: int = Field(..., title="Tenure (Household Size)", example=7)
+    Balance: float = Field(..., title="Balance", exampe=10)
+    NumOfProducts: int = Field(..., title="Number of Products", example=2)
+    HasCrCard: int = Field(..., title="Has Credit Card?", example=1)
+    IsActiveMember: int = Field(..., title="Is Active Member?", example=1)
+    EstimatedSalary: float = Field(..., title="Estimated Salary", example=10022.8)
+    Complain: int = Field(..., title="Has Complain?", example=0)
+    Satisfaction_Score: int = Field(..., title="Satisfaction Score", example=2)
+    Card_Type: CardType = Field(..., title="Card Type", example="SILVER")
+    Point_Earned: int = Field(..., title="Points Earned", example=205)
 
 
 class Request(BaseModel):
@@ -66,4 +66,4 @@ class Response(BaseModel):
     This model represents an API response.
 
     """
-    labels: list[int] = Field(title="Customer Churn Predictions")
+    labels: list[int] = Field(title="Customer Churn Predictions", example=[1])
