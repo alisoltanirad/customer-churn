@@ -46,4 +46,4 @@ class Response(BaseModel):
     This model represents an API response.
 
     """
-    result: list[int] = Field(title="Customer Churn Predictions")
+    labels: list[int] = Field(title="Customer Churn Predictions")
