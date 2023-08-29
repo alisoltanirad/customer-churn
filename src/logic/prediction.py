@@ -11,8 +11,8 @@ import pandas as pd
 from sklearn.compose import ColumnTransformer
 from xgboost import XGBClassifier
 
-from config import GCS_FOLDER
-from gc_utils import load_from_gcs
+from .config import GCS_FOLDER
+from .gc_utils import load_from_gcs
 
 
 def predict(

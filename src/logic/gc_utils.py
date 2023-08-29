@@ -13,7 +13,7 @@ from google.cloud import storage
 from sklearn.compose import ColumnTransformer
 from xgboost import XGBClassifier
 
-from config import GCS_BUCKET, GCS_FOLDER, MODEL_FILENAME, PREPROCESSOR_FILENAME
+from .config import GCS_BUCKET, GCS_FOLDER, MODEL_FILENAME, PREPROCESSOR_FILENAME
 
 
 def upload_to_gcs(filename: str):

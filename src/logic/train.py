@@ -13,9 +13,9 @@ Example:
 import pandas as pd
 from xgboost import XGBClassifier
 
-from config import XGB_PARAMS
-from data import get_x_y
-from gc_utils import save_classifier
+from .config import XGB_PARAMS
+from .data import get_x_y
+from .gc_utils import save_classifier
 
 
 def train(X: pd.DataFrame, y: pd.Series) -> XGBClassifier:

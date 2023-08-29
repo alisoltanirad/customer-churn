@@ -9,7 +9,7 @@ import pandas as pd
 from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 
-from config import (
+from .config import (
     BQ_DATASET,
     BQ_PROJECT,
     BQ_TABLE,
@@ -17,7 +17,7 @@ from config import (
     FEATURES_TO_USE,
     NUMERIC_COLS,
 )
-from gc_utils import save_preprocessor
+from .gc_utils import save_preprocessor
 
 
 def load_training_data_from_bigquery() -> pd.DataFrame:
