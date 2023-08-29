@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-"""Configurations
+"""ML Configurations
 
-This module contains configs for training/testing the model
+This module contains configs for training/testing the model.
 
 """
 # pylint: disable=unused-variable
