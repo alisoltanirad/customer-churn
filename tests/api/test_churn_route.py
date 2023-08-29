@@ -43,6 +43,18 @@ from src.api.config import CHURN_URL
             }
         ),
         (
+            "null_input_returns_error",
+            None,
+            422,
+            {
+                "detail": [{
+                    "loc": ["body"],
+                    "msg": "field required",
+                    "type": "value_error.missing"
+                }]
+            }
+        ),
+        (
             "empty_input_returns_error",
             {},
             422,
