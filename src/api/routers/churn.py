@@ -35,5 +35,4 @@ async def customer_churn(request: Request):
     labels: list[int] = predictions.tolist()
 
     # Return predictions
-    return predictions
-    
+    return {"labels": labels}
