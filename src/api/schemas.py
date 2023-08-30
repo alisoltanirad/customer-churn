@@ -35,6 +35,7 @@ class Customer(BaseModel):
     predciting if the customer churns.
 
     """
+
     CreditScore: int = Field(..., title="Credit Score", ge=350, le=850, example=819)
     Geography: Country = Field(..., title="Geography (Country)", example="France")
     Gender: Sex = Field(..., title="Gender", example="Male")
@@ -46,7 +47,9 @@ class Customer(BaseModel):
     IsActiveMember: int = Field(..., title="Is Active Member?", ge=0, le=1, example=1)
     EstimatedSalary: float = Field(..., title="Estimated Salary", ge=0, example=10022.8)
     Complain: int = Field(..., title="Has Complain?", ge=0, le=1, example=0)
-    Satisfaction_Score: int = Field(..., title="Satisfaction Score", ge=1, le=5, example=2)
+    Satisfaction_Score: int = Field(
+        ..., title="Satisfaction Score", ge=1, le=5, example=2
+    )
     Card_Type: CardType = Field(..., title="Card Type", example="SILVER")
     Point_Earned: int = Field(..., title="Points Earned", ge=0, example=205)
 
@@ -57,6 +60,7 @@ class Request(BaseModel):
     This model represents an API request.
 
     """
+
     customers: list[Customer] = Field(title="Customers")
 
 
@@ -66,4 +70,5 @@ class Response(BaseModel):
     This model represents an API response.
 
     """
+
     labels: list[int] = Field(title="Customer Churn Predictions", example=[1])

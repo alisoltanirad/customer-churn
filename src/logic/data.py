@@ -36,7 +36,9 @@ def load_training_data_from_bigquery() -> pd.DataFrame:
     """
 
     # Load data from BigQuery into Pandas dataframe
-    dataset: pd.DataFrame = pd.read_gbq(query, project_id=BQ_PROJECT, dialect="standard")
+    dataset: pd.DataFrame = pd.read_gbq(
+        query, project_id=BQ_PROJECT, dialect="standard"
+    )
 
     # Return training dataset
     return dataset
@@ -89,7 +91,7 @@ def preprocess_features(X: pd.DataFrame) -> pd.DataFrame:
     preprocessor = ColumnTransformer(
         transformers=[
             ("num", standard_scaler, NUMERIC_COLS),
-            ("cat", one_hot_encoder, CATEGORICAL_COLS)
+            ("cat", one_hot_encoder, CATEGORICAL_COLS),
         ]
     )
 

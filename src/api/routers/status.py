@@ -9,8 +9,8 @@ from fastapi import APIRouter
 
 from api.config import STATUS_URL
 
-
 router = APIRouter()
+
 
 @router.get(STATUS_URL)
 async def root():

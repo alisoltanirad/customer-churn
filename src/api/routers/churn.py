@@ -14,9 +14,9 @@ from logic.config import CATEGORICAL_COLS, GCS_FOLDER
 from logic.gc_utils import load_from_gcs
 from logic.prediction import predict
 
-
 router = APIRouter()
 classifier, preprocessor = load_from_gcs(GCS_FOLDER)
+
 
 @router.post(path=CHURN_URL, response_model=Response)
 async def customer_churn(request: Request):

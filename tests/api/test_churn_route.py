@@ -33,46 +33,45 @@ from src.api.config import CHURN_URL
                         "Complain": 0,
                         "Satisfaction_Score": 2,
                         "Card_Type": "SILVER",
-                        "Point_Earned": 205
+                        "Point_Earned": 205,
                     }
                 ]
             },
             200,
-            {
-                "labels": [0]
-            }
+            {"labels": [0]},
         ),
         (
             "null_input_returns_error",
             None,
             422,
             {
-                "detail": [{
-                    "loc": ["body"],
-                    "msg": "field required",
-                    "type": "value_error.missing"
-                }]
-            }
+                "detail": [
+                    {
+                        "loc": ["body"],
+                        "msg": "field required",
+                        "type": "value_error.missing",
+                    }
+                ]
+            },
         ),
         (
             "empty_input_returns_error",
             {},
             422,
             {
-                "detail": [{
-                    "loc": ["body", "customers"],
-                    "msg": "field required",
-                    "type": "value_error.missing"
-                }]
-            }
-        )
-    ]
+                "detail": [
+                    {
+                        "loc": ["body", "customers"],
+                        "msg": "field required",
+                        "type": "value_error.missing",
+                    }
+                ]
+            },
+        ),
+    ],
 )
 def test_api(
-    test_name: str,
-    request_body: dict,
-    expected_code: int,
-    expected_response: dict
+    test_name: str, request_body: dict, expected_code: int, expected_response: dict
 ):
     """Test API
 

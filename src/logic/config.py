@@ -35,7 +35,7 @@ FEATURES_TO_USE: list[str] = [
     "Complain",
     "Satisfaction_Score",
     "Card_Type",
-    "Point_Earned"
+    "Point_Earned",
 ]
 
 # Numeric/Categorical features
@@ -52,11 +52,7 @@ NUMERIC_COLS: list[str] = [
     "Satisfaction_Score",
     "Point_Earned",
 ]
-CATEGORICAL_COLS: list[str] = [
-    "Geography",
-    "Gender",
-    "Card_Type"
-]
+CATEGORICAL_COLS: list[str] = ["Geography", "Gender", "Card_Type"]
 
 # XGBoost classifier parameters
 XGB_PARAMS: dict = {
