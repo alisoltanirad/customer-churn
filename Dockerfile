@@ -9,7 +9,7 @@ ENV PYTHONUNBUFFERED True
 ENV APP_HOME /app
 WORKDIR $APP_HOME
 COPY requirements.txt ./
-COPY src ./
+COPY src /app/
 
 # Install application dependencies
 RUN pip install --no-cache-dir -r requirements.txt
@@ -18,4 +18,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE 8000
 
 # Run the web service on container startup
-CMD ["gunicorn", "api.app:application", "-b", "0.0.0.0:8000", "--workers", "1", "--threads", "8", "--timeout", "0"]
+CMD ["gunicorn", "-b", "0.0.0.0:8000", "--workers", "1", "--threads", "8", "--timeout", "0", "api.app:application"]
