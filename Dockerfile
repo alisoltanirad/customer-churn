@@ -12,6 +12,7 @@ COPY requirements.txt ./
 COPY src /app/
 
 # Install application dependencies
+RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Expose the port for the FastAPI application
