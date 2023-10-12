@@ -30,6 +30,16 @@ are listed in *requirements.txt* (application main requirements),
 (requirements for development of the project).
 
 
+## Dataset
+
+We use sample open-source data from Kaggle for this project's proof of concept.
+You can use the same dataset to reproduce the model and get your application
+up and running.
+
+For more information, visit
+[dataset on Kaggle](https://www.kaggle.com/datasets/radheshyamkollipara/bank-customer-churn).
+
+
 ## Contributing
 
 I welcome contributions from the community!
